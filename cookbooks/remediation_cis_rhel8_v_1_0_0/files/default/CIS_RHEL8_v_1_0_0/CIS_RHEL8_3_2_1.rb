@@ -1,0 +1,18 @@
+# frozen_string_literal: true
+
+require_relative 'cis_remediation'
+
+class CIS_RHEL8_3_2_1 < CISRemediation
+  def initialize
+    super('CIS_RHEL8_3_2_1')
+    @title = 'Ensure source routed packets are not accepted (Scored)'
+    @scored = true
+    @level = 1
+    @identifier = '3.2.1'
+    @description = '
+    "3.2.1 Ensure source routed packets are not accepted (Scored)\nProfile Applicability:\n Level 1 - Server\n Level 1 - Workstation\nDescription:\nIn networking, source routing allows a sender to partially or fully specify the route packets take through a network. In contrast, non-source routed packets travel a path determined by routers in the network. In some \ncases, systems may not be routable or reachable from some locations (e.g. private addresses vs. Internet routable), and so source routed packets would need to be used.\nRationale:\nSetting net.ipv4.conf.all.accept_source_route, net.ipv4.conf.default.accept_source_route, net.ipv6.conf.all.accept_source_route and\nnet.ipv6.conf.default.accept_source_route to 0 disables the system from accepting source routed packets. Assume this system was capable of routing packets to Internet routable addresses on one interface and private \naddresses on another interface. Assume that the private addresses were not routable to the Internet routable addresses and vice versa. Under normal routing circumstances, an attacker from the Internet routable \naddresses could not use the system as a way to reach the private address systems. If, however, source routed packets were allowed, they could be used to gain access to the private address systems as the route could \nbe specified, rather than rely on routing protocols that did not allow this routing.\n\nAudit:\nRun the following commands and verify output matches:\n      # sysctl net.ipv4.conf.all.accept_source_route net.ipv4.conf.all.accept_source_route = 0\n# sysctl net.ipv4.conf.default.accept_source_route net.ipv4.conf.default.accept_source_route = 0\n# grep \"net\.ipv4\.conf\.all\.accept_source_route\" /etc/sysctl.conf /etc/sysctl.d/*\n                   net.ipv4.conf.all.accept_source_route= 0\n# grep \"net\.ipv4\.conf\.default\.accept_source_route\" /etc/sysctl.conf /etc/sysctl.d/*\nnet.ipv4.conf.default.accept_source_route= 0\n# sysctl net.ipv6.conf.all.accept_source_route\nnet.ipv6.conf.all.accept_source_route = 0\n# sysctl net.ipv6.conf.default.accept_source_route\nnet.ipv6.conf.default.accept_source_route = 0\n# grep \"net\.ipv6\.conf\.all\.accept_source_route\" /etc/sysctl.conf /etc/sysctl.d/*\nnet.ipv4.conf.all.accept_source_route= 0\n# grep \"net\.ipv6\.conf\.default\.accept_source_route\" /etc/sysctl.conf /etc/sysctl.d/*\nnet.ipv6.conf.default.accept_source_route= 0\n\nRemediation:\nSet the following parameters in /etc/sysctl.conf or a /etc/sysctl.d/* file:\nRun the following commands to set the active kernel parameters:\nCIS Controls:\nVersion 7\n5.1 Establish Secure Configurations\nMaintain documented, standard security configuration standards for all authorized operating systems and software.\n      net.ipv4.conf.all.accept_source_route = 0 net.ipv4.conf.default.accept_source_route = 0 net.ipv6.conf.all.accept_source_route = 0 net.ipv6.conf.default.accept_source_route = 0\n               # sysctl -w net.ipv4.conf.all.accept_source_route=0\n# sysctl -w net.ipv4.conf.default.accept_source_route=0 # sysctl -w net.ipv6.conf.all.accept_source_route=0\n       # sysctl -w net.ipv6.conf.default.accept_source_route=0 # sysctl -w net.ipv4.route.flush=1\n# sysctl -w net.ipv6.route.flush=1\n\n"
+    '
+    @script_file = 'CIS_RHEL8_3_2_1.sh'
+    @commands = [{"script_bash"=>"bash #{@script_directory}/CIS_RHEL8_3_2_1.sh"}]
+  end
+end

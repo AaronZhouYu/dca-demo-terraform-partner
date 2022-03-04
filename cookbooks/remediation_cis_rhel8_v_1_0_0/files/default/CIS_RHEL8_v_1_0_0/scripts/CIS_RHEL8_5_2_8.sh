@@ -1,0 +1,2 @@
+#!/bin/bash
+egrep -q "^(\s*)IgnoreRhosts\s+\S+(\s*#.*)?\s*$" /etc/ssh/sshd_config && sed -ri "s/^(\s*)IgnoreRhosts\s+\S+(\s*#.*)?\s*$/\1IgnoreRhosts yes\2/" /etc/ssh/sshd_config || echo -e "\nIgnoreRhosts yes" >> /etc/ssh/sshd_config

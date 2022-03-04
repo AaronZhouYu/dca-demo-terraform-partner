@@ -1,0 +1,12 @@
+---
+name: cis-windows2019-level2-memberserver
+title: CIS Microsoft Windows Server 2019 Benchmark Level 2 - Member Server
+summary: CIS Microsoft Windows Server 2019 Benchmark Level 2 - Member Server translated
+  from SCAP
+version: 1.1.0-2
+maintainer: Chef Software, Inc.
+copyright: Chef Software, Inc.
+copyright_email: support@chef.io
+license: Proprietary, All rights reserved
+supports:
+- platform-family: windows

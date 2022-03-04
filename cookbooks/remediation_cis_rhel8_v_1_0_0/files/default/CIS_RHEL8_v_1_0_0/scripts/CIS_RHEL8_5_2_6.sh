@@ -1,0 +1,2 @@
+#!/bin/bash
+egrep -q "^(\s*)X11Forwarding\s+\S+(\s*#.*)?\s*$" /etc/ssh/sshd_config && sed -ri "s/^(\s*)X11Forwarding\s+\S+(\s*#.*)?\s*$/\1X11Forwarding no\2/" /etc/ssh/sshd_config || echo -e "\nX11Forwarding no" >> /etc/ssh/sshd_config

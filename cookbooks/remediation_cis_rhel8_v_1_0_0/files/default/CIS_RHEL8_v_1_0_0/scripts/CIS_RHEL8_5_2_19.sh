@@ -1,0 +1,2 @@
+#!/bin/bash
+egrep -q "^(\s*)MaxSessions\s+\S+(\s*#.*)?\s*$" /etc/ssh/sshd_config && sed -ri "s/^(\s*)MaxSessions\s+\S+(\s*#.*)?\s*$/\1MaxSessions 4\2/" /etc/ssh/sshd_config || echo -e "\nMaxSessions 4" >> /etc/ssh/sshd_config

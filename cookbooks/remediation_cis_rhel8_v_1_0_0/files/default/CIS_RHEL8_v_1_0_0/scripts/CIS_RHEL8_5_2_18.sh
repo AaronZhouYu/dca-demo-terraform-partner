@@ -1,0 +1,2 @@
+#!/bin/bash
+egrep -q "^(\s*)maxstartups\s+\S+(\s*#.*)?\s*$" /etc/ssh/sshd_config && sed -ri "s/^(\s*)maxstartups\s+\S+(\s*#.*)?\s*$/\1maxstartups 10:30:60\2/" /etc/ssh/sshd_config || echo -e "\nmaxstartups 10:30:60" >> /etc/ssh/sshd_config

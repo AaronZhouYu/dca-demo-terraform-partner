@@ -1,0 +1,2 @@
+#!/bin/bash
+rpm -qa | grep gdm3 && echo -e "[org/gnome/login-screen]\nbanner-message-enable=true\nbanner-message-text='Authorized uses only. All activity may be monitored and reported.'" > /etc/gdm3/greeter.dconf-defaults || echo 'Nothing to do, gdm3 is not installed'

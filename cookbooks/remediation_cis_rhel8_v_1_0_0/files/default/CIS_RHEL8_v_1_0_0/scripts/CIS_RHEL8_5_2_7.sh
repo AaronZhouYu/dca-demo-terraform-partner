@@ -1,0 +1,2 @@
+#!/bin/bash
+egrep -q "^(\s*)MaxAuthTries\s+\S+(\s*#.*)?\s*$" /etc/ssh/sshd_config && sed -ri "s/^(\s*)MaxAuthTries\s+\S+(\s*#.*)?\s*$/\1MaxAuthTries 4\2/" /etc/ssh/sshd_config || echo -e "\nMaxAuthTries 4" >> /etc/ssh/sshd_config

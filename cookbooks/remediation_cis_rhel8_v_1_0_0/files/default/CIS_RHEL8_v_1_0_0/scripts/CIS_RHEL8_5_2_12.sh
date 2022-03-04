@@ -1,0 +1,2 @@
+#!/bin/bash
+egrep -q "^(\s*)PermitUserEnvironment\s+\S+(\s*#.*)?\s*$" /etc/ssh/sshd_config && sed -ri "s/^(\s*)PermitUserEnvironment\s+\S+(\s*#.*)?\s*$/\1PermitUserEnvironment no\2/" /etc/ssh/sshd_config || echo -e "\nPermitUserEnvironment no" >> /etc/ssh/sshd_config

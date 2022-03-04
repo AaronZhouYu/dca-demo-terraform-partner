@@ -1,0 +1,2 @@
+#!/bin/bash
+egrep -q "^(\s*)HostbasedAuthentication\s+\S+(\s*#.*)?\s*$" /etc/ssh/sshd_config && sed -ri "s/^(\s*)HostbasedAuthentication\s+\S+(\s*#.*)?\s*$/\1HostbasedAuthentication no\2/" /etc/ssh/sshd_config || echo -e "\nHostbasedAuthentication no" >> /etc/ssh/sshd_config

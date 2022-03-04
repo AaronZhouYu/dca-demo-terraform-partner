@@ -1,0 +1,2 @@
+#!/bin/bash
+egrep -q "^(\s*)Banner\s+\S+(\s*#.*)?\s*$" /etc/ssh/sshd_config && sed -ri "s/^(\s*)Banner\s+\S+(\s*#.*)?\s*$/\1Banner \/etc\/issue.net\2/" /etc/ssh/sshd_config || echo -e "\nBanner /etc/issue.net" >> /etc/ssh/sshd_config

@@ -1,0 +1,2 @@
+#!/bin/bash
+egrep -q "^(\s*)LoginGraceTime\s+\S+(\s*#.*)?\s*$" /etc/ssh/sshd_config && sed -ri "s/^(\s*)LoginGraceTime\s+\S+(\s*#.*)?\s*$/\1LoginGraceTime 60\2/" /etc/ssh/sshd_config || echo -e "\nLoginGraceTime 60" >> /etc/ssh/sshd_config

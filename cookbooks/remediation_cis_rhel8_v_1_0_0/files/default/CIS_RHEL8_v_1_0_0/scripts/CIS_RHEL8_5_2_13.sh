@@ -1,0 +1,3 @@
+#!/bin/bash
+egrep -q "^(\s*)ClientAliveInterval\s+\S+(\s*#.*)?\s*$" /etc/ssh/sshd_config && sed -ri "/^(\s*)ClientAliveInterval\s+\S+(\s*#.*)?\s*$/d" /etc/ssh/sshd_config && echo -e "\nClientAliveInterval 300" >> /etc/ssh/sshd_config || echo -e "\nClientAliveInterval 300" >> /etc/ssh/sshd_config
+egrep -q "^(\s*)ClientAliveCountMax\s+\S+(\s*#.*)?\s*$" /etc/ssh/sshd_config && sed -ri "s/^(\s*)ClientAliveCountMax\s+\S+(\s*#.*)?\s*$/\1ClientAliveCountMax 0\2/" /etc/ssh/sshd_config || echo -e "\nClientAliveCountMax 0" >> /etc/ssh/sshd_config

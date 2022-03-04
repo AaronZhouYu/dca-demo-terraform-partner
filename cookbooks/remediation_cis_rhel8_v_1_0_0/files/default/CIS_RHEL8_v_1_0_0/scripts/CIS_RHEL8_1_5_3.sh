@@ -1,0 +1,3 @@
+#!/bin/bash
+egrep -q '^\s*ExecStart=-/usr/lib/systemd/systemd-sulogin-shell(\s+emergency|\s*)\s*(\s+#.*)?$' /usr/lib/systemd/system/emergency.service || echo 'ExecStart=-/usr/lib/systemd/systemd-sulogin-shell emergency' >> /usr/lib/systemd/system/emergency.service
+egrep -q '^\s*ExecStart=-/usr/lib/systemd/systemd-sulogin-shell(\s+rescue\s*|\s*)\s*(\s+#.*)?$' /usr/lib/systemd/system/rescue.service || echo 'ExecStart=-/usr/lib/systemd/systemd-sulogin-shell rescue' >> /usr/lib/systemd/system/rescue.service

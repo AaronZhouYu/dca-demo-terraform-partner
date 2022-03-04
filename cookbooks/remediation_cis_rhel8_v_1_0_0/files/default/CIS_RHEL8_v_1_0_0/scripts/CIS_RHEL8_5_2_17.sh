@@ -1,0 +1,2 @@
+#!/bin/bash
+egrep -q "^(\s*)AllowTcpForwarding\s+\S+(\s*#.*)?\s*$" /etc/ssh/sshd_config && sed -ri "s/^(\s*)AllowTcpForwarding\s+\S+(\s*#.*)?\s*$/\1AllowTcpForwarding no\2/" /etc/ssh/sshd_config || echo -e "\nAllowTcpForwarding no" >> /etc/ssh/sshd_config
